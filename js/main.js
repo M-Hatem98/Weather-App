@@ -18,13 +18,13 @@ document.getElementById('searchForm').addEventListener('submit', function(e) {
 });
 
 async function getWeather(citydyn) {
-  Swal.showLoading();
+  document.getElementById('pageLoader').classList.remove('hidden');
   const url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${citydyn}&days=7`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    Swal.close();
+    // Swal.close();
     if (data.error) {
       throw new Error(data.error.message);
     }
@@ -44,9 +44,17 @@ async function getWeather(citydyn) {
         icon: 'error',
         confirmButtonText: 'OK'
       });
-    };
-}
+    }
+    finally {
+      // Hide loader
+      setTimeout(() => {
+        document.getElementById('pageLoader').classList.add('hidden');
+      }, 300);
+    }
+  }
+
 getWeather('cairo');
+
 function displayWeather() {
   if (!weatherData.forecast || !weatherData.forecast.forecastday.length) return;
   getDateFormatted();
@@ -54,7 +62,15 @@ function displayWeather() {
   displayTodayDetails();
   displayTodayHourlyDetails();
   displayWeeklyForecast();
+
+  setTimeout(() => {
+    document.getElementById('todayInfo').classList.add('show');
+    document.getElementById('details').classList.add('show');
+    document.getElementById('hourly').classList.add('show');
+    document.getElementById('forecast').classList.add('show');
+  }, 1000);
 }
+
 let days = [
   "Sunday",
   "Monday",
@@ -98,11 +114,11 @@ function getDateFormatted() {
 function displayTodayInfo() {
   todayInfo.innerHTML = `
   <h5 id="date">${fullDate[0]}</h5>
-  <div class="my-2"><i id="icon"><img src="${weatherData.current.condition.icon}" alt="Weather Icon"></i>
+  <div class="my-4"><i id="icon"><img src="${weatherData.current.condition.icon}" alt="Weather Icon"></i>
     <div id="temperature" class="temperature">${weatherData.current.temp_c}°C</div>
-    <div id="min" class="small-text mt-2">${weatherData.forecast.forecastday[0].day.mintemp_c}°C</div>
+    <div id="min" class="small-text my-2">${weatherData.forecast.forecastday[0].day.mintemp_c}°C</div>
     <div id="location" class="small-text">${weatherData.location.country + " / " + weatherData.location.name}</div>
-    <p id="condition" class="small-text">${weatherData.current.condition.text} <img src="${weatherData.current.condition.icon}" alt="Weather Icon"></p>
+    <p id="condition" class="small-text mt-2">${weatherData.current.condition.text} <img src="${weatherData.current.condition.icon}" alt="Weather Icon"></p>
   </div>
 
   <div class="d-flex justify-content-around flex-wrap">
@@ -156,7 +172,7 @@ function displayWeeklyForecast(){
   for (let i = 1; i < Day.length; i++) {
     forecastContent += `
     <div class="col-6 col-md-3 col-lg-2">
-      <div class="p-2">
+      <div class="p-2 holder">
         <small>${Day[i]}</small><br>
         <img src="${weatherData.forecast.forecastday[i].day.condition.icon}" alt="Weather Icon">
         <div class="mt-2">

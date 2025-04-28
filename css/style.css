@@ -51,7 +51,7 @@
     }
 
     .temperature {
-      font-size: 3.5rem;
+      font-size: 4rem;
       font-weight: bold;
     }
 
@@ -64,13 +64,13 @@
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
       padding: 1rem;
-      margin-top: 15px;
+      margin-top: 30px;
     }
 
     .hourly-forecast {
       background: rgba(255, 255, 255, 0.1);
       border-radius: 15px;
-      margin-top: 15px;
+      margin-top: 30px;
       padding: 1rem;
       overflow-x: auto;
       
@@ -80,9 +80,89 @@
       min-width: 100px;
       text-align: center;
       margin-right: 10px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hour-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     }
 
     .hour-icon {
       font-size: 1.5rem;
       margin-bottom: 5px;
     }
+
+    #forecast .holder {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    #forecast .holder:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Page Loader */
+.page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.3s ease;
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition: opacity 0.3s ease;
+  -ms-transition: opacity 0.3s ease;
+  -o-transition: opacity 0.3s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Spinner inside loader */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
