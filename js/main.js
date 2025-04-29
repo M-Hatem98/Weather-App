@@ -62,12 +62,15 @@ function displayWeather() {
   displayTodayDetails();
   displayTodayHourlyDetails();
   displayWeeklyForecast();
+  changeBackground();
 
   setTimeout(() => {
     document.getElementById('todayInfo').classList.add('show');
     document.getElementById('details').classList.add('show');
     document.getElementById('hourly').classList.add('show');
     document.getElementById('forecast').classList.add('show');
+    document.getElementById('todayHours').classList.add('show');
+    document.getElementById('week').classList.add('show');
   }, 1000);
 }
 
@@ -185,4 +188,25 @@ function displayWeeklyForecast(){
     `;
   }
   forecast.innerHTML = forecastContent;
+}
+
+function changeBackground() {
+  const weatherCondition = weatherData.current.condition.text.toLowerCase();
+  const body = document.getElementById('weatherBody');
+
+  body.classList.remove('sunny', 'rainy', 'cloudy', 'snowy', 'thunder');
+
+  if (weatherCondition.includes('sunny') || weatherCondition.includes('clear')) {
+    body.classList.add('sunny');
+  } else if (weatherCondition.includes('rain') || weatherCondition.includes('shower')) {
+    body.classList.add('rainy');
+  } else if (weatherCondition.includes('cloud')) {
+    body.classList.add('cloudy');
+  } else if (weatherCondition.includes('snow') || weatherCondition.includes('sleet')) {
+    body.classList.add('snowy');
+  } else if (weatherCondition.includes('thunder') || weatherCondition.includes('storm')) {
+    body.classList.add('thunder');
+  } else {
+    body.style.background = 'linear-gradient(to bottom, #87ceeb, #ffffff)'; // Default
+  }
 }

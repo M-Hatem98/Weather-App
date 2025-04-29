@@ -1,9 +1,9 @@
     body {
-      background: url(../images/mountain.jpeg) no-repeat center center;
-      background-size: cover;
       min-height: 100vh;
       color: white;
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #87ceeb, #ffffff);
+      transition: background 0.5s ease;
     }
 
     #searchForm {
@@ -165,4 +165,35 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+.sunny {
+  /* background: linear-gradient(to bottom, #ffe259, #ffa751); */
+  background: url(../images/sunny.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.rainy {
+  /* background: linear-gradient(to bottom, #314755, #26a0da); */
+  background: url(../images/rainy.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.cloudy {
+  /* background: linear-gradient(to bottom, #bdc3c7, #2c3e50); */
+  background: url(../images/cloudy.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+.snowy {
+  /* background: linear-gradient(to bottom, #e6dada, #274046); */
+  background: url(../images/snowy.jpeg) no-repeat center center;
+  background-size: cover;
+}
+
+.thunder {
+  /* background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); */
+  background: url(../images/thunder.jpg) no-repeat center center;
+  background-size: cover;
 }

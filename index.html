@@ -15,7 +15,7 @@
   <link href="css/style.css" rel="stylesheet" />
 </head>
 
-<body>
+<body id="weatherBody">
   <div id="pageLoader" class="page-loader">
     <div class="spinner"></div>
   </div>
@@ -42,14 +42,14 @@
           </div>
 
           <!-- Hourly Forecast -->
-          <div class="hourly-forecast overflow-hidden">
+          <div id="todayHours" class="hourly-forecast overflow-hidden fade-in">
             <h6 class="text-start mb-4">Today</h6>
             <div id="hourly" class="d-flex justify-content-between mt-4 fade-in">
 
             </div>
           </div>
           <!-- 7-Day Forecast -->
-          <div class="details-card mt-5">
+          <div id="week" class="details-card mt-5 fade-in">
             <h6 class="text-start mb-4">Week</h6>
             <div id="forecast" class="row text-center g-3 fade-in">
 
