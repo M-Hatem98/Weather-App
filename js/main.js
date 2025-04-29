@@ -39,11 +39,19 @@ async function getWeather(citydyn) {
     catch(error) {
       console.error("Error fetching weather data:", error);
       Swal.fire({
-        title: 'Error',
+        title: 'Oops!',
         text: error.message,
-        icon: 'error',
-        confirmButtonText: 'OK'
-      });
+        imageUrl: 'https://cdn-icons-png.flaticon.com/512/7486/7486821.png',
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: 'Sad Cloud Icon',
+        confirmButtonText: 'Try Again',
+        background: '#f0f0f0',
+        color: '#333',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        }
+      });     
     }
     finally {
       // Hide loader
